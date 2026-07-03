@@ -3,16 +3,21 @@ package br.com.api_junit.services.impl;
 import java.util.List;
 import java.util.Optional;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.api_junit.domain.User;
+import br.com.api_junit.domain.dto.UserDTO;
 import br.com.api_junit.repositories.UserRepository;
 import br.com.api_junit.services.UserService;
 import br.com.api_junit.services.exceptions.ObjectNotFoundException;
 
 @Service
 public class UserServiceImpl implements UserService {
+
+	@Autowired
+	private ModelMapper mapper;
 
 	@Autowired
 	private UserRepository repository;
@@ -26,6 +31,11 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public List<User> findAll(){
 		return repository.findAll();
+	}
+
+	@Override
+	public User create(UserDTO obj) {
+		return repository.save(mapper.map(obj, User.class));
 	}
 
 }
