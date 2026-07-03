@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: api-junit
+  profiles:
+    active: local
