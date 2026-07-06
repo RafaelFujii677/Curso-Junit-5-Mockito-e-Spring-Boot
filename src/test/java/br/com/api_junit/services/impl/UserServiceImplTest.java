@@ -5,6 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.util.List;
@@ -29,7 +32,7 @@ public class UserServiceImplTest {
 
 	private static final String E_MAIL_JA_CADASTRADO_NO_SISTEMA = "E-mail já cadastrado no sistema";
 	private static final int INDEX = 0;
-	private static final String OBJETO_NÃO_ENCONTRADO = "Objeto não encontrado!";
+	private static final String OBJETO_NAO_ENCONTRADO = "Objeto não encontrado!";
 	private static final Integer ID = 1;
 	private static final String NAME = "Valdir";
 	private static final String EMAIL = "valdir@mail.com";
@@ -69,13 +72,13 @@ public class UserServiceImplTest {
 
 	@Test
 	void whenFindByIdThenReturnAnObjectNotFoundException() {
-		when(repository.findById(anyInt())).thenThrow(new ObjectNotFoundException(OBJETO_NÃO_ENCONTRADO));
+		when(repository.findById(anyInt())).thenThrow(new ObjectNotFoundException(OBJETO_NAO_ENCONTRADO));
 
 		try {
 			service.findById(ID);
 		} catch (Exception ex) {
 			assertEquals(ObjectNotFoundException.class, ex.getClass());
-			assertEquals(OBJETO_NÃO_ENCONTRADO, ex.getMessage());
+			assertEquals(OBJETO_NAO_ENCONTRADO, ex.getMessage());
 		}
 	}
 
@@ -148,6 +151,26 @@ public class UserServiceImplTest {
 		} catch (Exception ex) {
 			assertEquals(DataIntegratyViolationException.class, ex.getClass());
 			assertEquals(E_MAIL_JA_CADASTRADO_NO_SISTEMA, ex.getMessage());
+		}
+	}
+
+	@Test
+	void deleteWithSuccess() {
+		when(repository.findById(anyInt())).thenReturn(optionalUser);
+		doNothing().when(repository).deleteById(anyInt());
+		service.delete(ID);
+		verify(repository, times(1)).deleteById(anyInt());
+	}
+
+	@Test
+	void deleteWothObjectNotFoundException() {
+		when(repository.findById(anyInt())).thenThrow(new ObjectNotFoundException(OBJETO_NAO_ENCONTRADO));
+
+		try {
+			service.delete(ID);
+		} catch (Exception ex) {
+			assertEquals(ObjectNotFoundException.class, ex.getClass());
+			assertEquals(OBJETO_NAO_ENCONTRADO, ex.getMessage());
 		}
 	}
 
