@@ -11,7 +11,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.modelmapper.ModelMapper;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -19,10 +18,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 import br.com.api_junit.domain.User;
 import br.com.api_junit.domain.dto.UserDTO;
 import br.com.api_junit.repositories.UserRepository;
+import br.com.api_junit.services.exceptions.ObjectNotFoundException;
 
 @SpringBootTest
 public class UserServiceImplTest {
 
+	private static final String OBJETO_NÃO_ENCONTRADO = "Objeto não encontrado!";
 	private static final Integer ID = 1;
 	private static final String NAME = "Valdir";
 	private static final String EMAIL = "valdir@mail.com";
@@ -58,6 +59,18 @@ public class UserServiceImplTest {
 		assertEquals(ID, response.getId());
 		assertEquals(NAME, response.getName());
 		assertEquals(EMAIL, response.getEmail());
+	}
+
+	@Test
+	void whenFindByIdThenReturnAnObjectNotFoundException() {
+		when(repository.findById(anyInt())).thenThrow(new ObjectNotFoundException(OBJETO_NÃO_ENCONTRADO));
+
+		try {
+			service.findById(ID);
+		} catch (Exception ex) {
+			assertEquals(ObjectNotFoundException.class, ex.getClass());
+			assertEquals(OBJETO_NÃO_ENCONTRADO, ex.getMessage());
+		}
 	}
 
 	private void startUser() {
