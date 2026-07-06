@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.when;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -23,6 +24,7 @@ import br.com.api_junit.services.exceptions.ObjectNotFoundException;
 @SpringBootTest
 public class UserServiceImplTest {
 
+	private static final int INDEX = 0;
 	private static final String OBJETO_NÃO_ENCONTRADO = "Objeto não encontrado!";
 	private static final Integer ID = 1;
 	private static final String NAME = "Valdir";
@@ -71,6 +73,22 @@ public class UserServiceImplTest {
 			assertEquals(ObjectNotFoundException.class, ex.getClass());
 			assertEquals(OBJETO_NÃO_ENCONTRADO, ex.getMessage());
 		}
+	}
+
+	@Test
+	void whenFindAllThenReturnAnListOfUsers() {
+		when(repository.findAll()).thenReturn(List.of(user));
+
+		List<User> response = service.findAll();
+
+		assertNotNull(response);
+		assertEquals(1, response.size());
+		assertEquals(User.class, response.get(INDEX).getClass());
+
+		assertEquals(ID, response.get(INDEX).getId());
+		assertEquals(NAME, response.get(INDEX).getName());
+		assertEquals(EMAIL, response.get(INDEX).getEmail());
+		assertEquals(PASSWORD, response.get(INDEX).getPassword());
 	}
 
 	private void startUser() {
