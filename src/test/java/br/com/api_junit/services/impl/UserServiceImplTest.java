@@ -27,6 +27,7 @@ import br.com.api_junit.services.exceptions.ObjectNotFoundException;
 @SpringBootTest
 public class UserServiceImplTest {
 
+	private static final String E_MAIL_JA_CADASTRADO_NO_SISTEMA = "E-mail já cadastrado no sistema";
 	private static final int INDEX = 0;
 	private static final String OBJETO_NÃO_ENCONTRADO = "Objeto não encontrado!";
 	private static final Integer ID = 1;
@@ -118,7 +119,35 @@ public class UserServiceImplTest {
 			service.create(userDTO);
 		} catch (Exception ex) {
 			assertEquals(DataIntegratyViolationException.class, ex.getClass());
-			assertEquals("E-mail já cadastrado no sistema", ex.getMessage());
+			assertEquals(E_MAIL_JA_CADASTRADO_NO_SISTEMA, ex.getMessage());
+		}
+	}
+
+	@Test
+	void whenUpdateThenReturnSuccess() {
+		when(repository.save(any())).thenReturn(user);
+
+		User response = service.update(userDTO);
+
+		assertNotNull(response);
+		assertEquals(User.class, response.getClass());
+
+		assertEquals(ID, response.getId());
+		assertEquals(NAME, response.getName());
+		assertEquals(EMAIL, response.getEmail());
+		assertEquals(PASSWORD, response.getPassword());
+	}
+
+	@Test
+	void whenUpdateThenReturnAnDataIntegrityViolationException() {
+		when(repository.findByEmail(anyString())).thenReturn(optionalUser);
+
+		try {
+			optionalUser.get().setId(2);
+			service.update(userDTO);
+		} catch (Exception ex) {
+			assertEquals(DataIntegratyViolationException.class, ex.getClass());
+			assertEquals(E_MAIL_JA_CADASTRADO_NO_SISTEMA, ex.getMessage());
 		}
 	}
 
