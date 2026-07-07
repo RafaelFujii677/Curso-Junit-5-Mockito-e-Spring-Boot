@@ -1,28 +1,28 @@
 - [x] Aula 01 - Instalação das ferramentas
 - [x] Aula 02 - Iniciando projeto
 - [x] Aula 03 - Classe de domínio
-- [ ] Aula 04 - Endpoint findById
-- [ ] Aula 05 - UserService e UserRepository
-- [ ] Aula 06 - Perfil de teste
-- [ ] Aula 07 - Padrão DTO
-- [ ] Aula 08 - Endpoiny findAll
-- [ ] Aula 09 - Endpoint create
-- [ ] Aula 10 - Exceção e-mail já cadastrado
-- [ ] Aula 11 - Endpoint update
-- [ ] Aula 12 - Endpoint delete
-- [ ] Aula 13 - Teste classe principal
-- [ ] Aula 14 - Teste UserService findById
-- [ ] Aula 15 - Teste UserService objeto não encontrado
-- [ ] Aula 16 - Teste UserService findAll
-- [ ] Aula 17 - Teste UserService create
-- [ ] Aula 18 - Teste UserService update
-- [ ] Aula 19 - Teste UserService delete
-- [ ] Aula 20 - Teste UserResource findById
-- [ ] Aula 21 - Teste UserResource findAll
-- [ ] Aula 22 - Teste UserResource create
-- [ ] Aula 23 - Teste UserResource update
-- [ ] Aula 24 - Teste UserResource delete
-- [ ] Aula 25 - Teste UserResource ObjectNotFound
-- [ ] Aula 26 - Test ExceptionHandler dataIntegratyViolationException
-- [ ] Aula 27 - BugFix
-- [ ] Aula 28 - Deploy
+- [x] Aula 04 - Endpoint findById
+- [x] Aula 05 - UserService e UserRepository
+- [x] Aula 06 - Perfil de teste
+- [x] Aula 07 - Padrão DTO
+- [x] Aula 08 - Endpoiny findAll
+- [x] Aula 09 - Endpoint create
+- [x] Aula 10 - Exceção e-mail já cadastrado
+- [x] Aula 11 - Endpoint update
+- [x] Aula 12 - Endpoint delete
+- [x] Aula 13 - Teste classe principal
+- [x] Aula 14 - Teste UserService findById
+- [x] Aula 15 - Teste UserService objeto não encontrado
+- [x] Aula 16 - Teste UserService findAll
+- [x] Aula 17 - Teste UserService create
+- [x] Aula 18 - Teste UserService update
+- [x] Aula 19 - Teste UserService delete
+- [x] Aula 20 - Teste UserResource findById
+- [x] Aula 21 - Teste UserResource findAll
+- [x] Aula 22 - Teste UserResource create
+- [x] Aula 23 - Teste UserResource update
+- [x] Aula 24 - Teste UserResource delete
+- [x] Aula 25 - Teste UserResource ObjectNotFound
+- [x] Aula 26 - Test ExceptionHandler dataIntegratyViolationException
+- [x] Aula 27 - BugFix
+- [x] Aula 28 - Deploy
