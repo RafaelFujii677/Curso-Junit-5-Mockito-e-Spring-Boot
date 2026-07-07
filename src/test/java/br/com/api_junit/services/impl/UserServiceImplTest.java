@@ -30,13 +30,14 @@ import br.com.api_junit.services.exceptions.ObjectNotFoundException;
 @SpringBootTest
 public class UserServiceImplTest {
 
-	private static final String E_MAIL_JA_CADASTRADO_NO_SISTEMA = "E-mail já cadastrado no sistema";
-	private static final int INDEX = 0;
-	private static final String OBJETO_NAO_ENCONTRADO = "Objeto não encontrado!";
 	private static final Integer ID = 1;
 	private static final String NAME = "Valdir";
 	private static final String EMAIL = "valdir@mail.com";
 	private static final String PASSWORD = "123";
+
+	private static final int INDEX = 0;
+	private static final String OBJETO_NAO_ENCONTRADO = "Objeto não encontrado!";
+	private static final String E_MAIL_JA_CADASTRADO_NO_SISTEMA = "E-mail já cadastrado no sistema";
 
 	@InjectMocks
 	private UserServiceImpl service;
