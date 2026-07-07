@@ -11,7 +11,7 @@ import br.com.api_junit.domain.User;
 import br.com.api_junit.domain.dto.UserDTO;
 import br.com.api_junit.repositories.UserRepository;
 import br.com.api_junit.services.UserService;
-import br.com.api_junit.services.exceptions.DataIntegratyViolationException;
+import br.com.api_junit.services.exceptions.DataIntegrityViolationException;
 import br.com.api_junit.services.exceptions.ObjectNotFoundException;
 
 @Service
@@ -54,6 +54,6 @@ public class UserServiceImpl implements UserService {
 
 	private void findByEmail(UserDTO obj) {
 		Optional<User> user = repository.findByEmail(obj.getEmail());
-		if(user.isPresent() && !user.get().getId().equals(obj.getId())) throw new DataIntegratyViolationException("E-mail já cadastrado no sistema");
+		if(user.isPresent() && !user.get().getId().equals(obj.getId())) throw new DataIntegrityViolationException("E-mail já cadastrado no sistema");
 	}
 }
